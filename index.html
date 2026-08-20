@@ -1087,6 +1087,16 @@ document.title = BRAND + " Landing Draft";
   });
 })();
 
+/* Placeholder links. Eighteen anchors still point at a bare hash while the
+   real destinations do not exist yet, and a bare hash scrolls the document
+   to the top. That turned the final "Book a demo" into a button that threw
+   the reader from the bottom of the page back to the start. Hold position
+   until these get real hrefs. */
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest('a[href="#"]');
+  if (a) e.preventDefault();
+});
+
 /* Review notes overlay */
 (function () {
   var btn = document.getElementById("notesBtn");
