@@ -99,3 +99,52 @@ test("no banned characters reach the page", () => {
   const banned = /[–—   ​]/;
   expect(banned.test(html)).toBe(false);
 });
+
+// Regression: REVIEW-001, rebuilding after a WebGL context loss left the old
+// closure's observers and visibility listener alive, so every background and
+// foreground cycle on a phone added another render loop against a dead
+// context. Measured before the fix: 42, 84, 126 frames per 700ms.
+// Found by /review on 2026-08-20
+test("a context loss and restore cycle does not leak a render loop", async ({ page }) => {
+  await page.goto("/index.html");
+
+  const frames = await page.evaluate(async () => {
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const countRaf = () =>
+      new Promise((resolve) => {
+        let n = 0;
+        const orig = window.requestAnimationFrame;
+        window.requestAnimationFrame = function (cb) {
+          n++;
+          return orig(cb);
+        };
+        setTimeout(() => {
+          window.requestAnimationFrame = orig;
+          resolve(n);
+        }, 700);
+      });
+
+    const cycle = async () => {
+      const c = document.querySelector('.gw[data-gw="light"] canvas');
+      const ext = c.getContext("webgl").getExtension("WEBGL_lose_context");
+      ext.loseContext();
+      await wait(250);
+      ext.restoreContext();
+      await wait(800);
+      document.dispatchEvent(new Event("visibilitychange"));
+      await wait(300);
+    };
+
+    window.scrollTo(0, 0);
+    await wait(400);
+    const before = await countRaf();
+    await cycle();
+    await cycle();
+    const after = await countRaf();
+    return { before, after };
+  });
+
+  expect(frames.before).toBeGreaterThan(5);
+  // two cycles used to triple this; allow slack for timing jitter only
+  expect(frames.after).toBeLessThan(frames.before * 1.5);
+});
