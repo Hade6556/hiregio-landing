@@ -27,10 +27,14 @@
   --dark:#0F1F19;
   --signal-no:#A8442E;
 
+  /* Every radius on the page comes from this ladder. Before, four values
+     (9, 12, 3, 4px) sat outside it and read as one-offs. */
   --r-card:18px;
+  --r-md:12px;
   --r-btn:10px;
-  --r-tag:999px;
   --r-sm:6px;
+  --r-xs:4px;
+  --r-tag:999px;
 
   /* Two h3 tiers, not three: --h3-lead heads a section row, --h3-base
      labels a card or a plan. */
@@ -148,7 +152,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
 /* ---------- mock UI ---------- */
 .scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
 .bento>*,.quotes>*,.plans>*,.step>*,.control>*,.compare>*,.stats>*,.foot-grid>*{min-width:0}
-.mock{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:460px}
+.mock{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;min-width:460px}
 .frame-shell .mock{border:0;border-radius:0;min-width:560px}
 .mock-head{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
@@ -162,7 +166,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
 
 .cand{display:grid;grid-template-columns:38px 1fr auto auto;gap:18px;align-items:center;padding:15px 22px}
 .avatar{
-  width:38px;height:38px;border-radius:9px;background:var(--bg-alt);
+  width:38px;height:38px;border-radius:var(--r-btn);background:var(--bg-alt);
   display:flex;align-items:center;justify-content:center;
   font-size:12px;font-weight:500;color:var(--ink-2);letter-spacing:0.02em;flex:none;
 }
@@ -190,11 +194,11 @@ h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
 .msg{padding:22px;font-size:15px;line-height:1.7;color:var(--ink)}
 .msg p{margin:0 0 14px}
 .msg p:last-child{margin:0}
-.var{color:var(--accent);background:var(--accent-bg);border-radius:4px;padding:1px 6px}
+.var{color:var(--accent);background:var(--accent-bg);border-radius:var(--r-xs);padding:1px 6px}
 
 .rep{display:grid;grid-template-columns:1fr 150px 54px;gap:20px;align-items:center;padding:15px 22px;font-size:14.5px}
-.bar{height:6px;background:var(--bg-alt);border-radius:3px;overflow:hidden}
-.bar span{display:block;height:100%;background:var(--accent);border-radius:3px}
+.bar{height:6px;background:var(--bg-alt);border-radius:var(--r-tag);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--accent);border-radius:var(--r-tag)}
 .rep-val{font-family:var(--mono);font-size:13px;text-align:right;color:var(--ink-2);font-variant-numeric:tabular-nums}
 
 .log{display:grid;grid-template-columns:62px 1fr 128px;gap:18px;align-items:baseline;padding:14px 22px}
@@ -255,7 +259,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
 .rail::before{content:"";position:absolute;left:50%;top:0;width:1px;height:32px;background:var(--line)}
 .rail::after{content:"";position:absolute;left:10%;right:10%;top:32px;height:1px;background:var(--line)}
 .layer-agents{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.chip{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 18px;text-align:center}
+.chip{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:20px 18px;text-align:center}
 .chip::before{content:"";position:absolute;left:50%;top:-32px;width:1px;height:32px;background:var(--line)}
 .chip b{display:block;font-size:15px;font-weight:500;margin-bottom:6px}
 .chip span{font-size:12.5px;color:var(--ink-3)}
