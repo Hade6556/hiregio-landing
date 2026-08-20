@@ -1,0 +1,1403 @@
+<title>HireGio Landing Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------------------------------------------------------
+   TOKENS. Measured from metaview.ai, juicebox.ai, reval.site.
+   Change the palette and the rhythm here and nowhere else.
+------------------------------------------------------------------ */
+:root{
+  --bg:#FBFAF7;
+  --bg-alt:#F3F1EC;
+  --surface:#FFFFFF;
+  --ink:#17191B;
+  --ink-2:rgba(23,25,27,0.60);
+  --ink-3:rgba(23,25,27,0.40);
+  --line:#E5E2DA;
+  --line-2:#EFEDE6;
+  --accent:#1E6B4E;
+  --accent-hi:#17553E;
+  --accent-bg:#EAF2ED;
+  --dark:#0F1F19;
+  --signal-no:#A8442E;
+
+  --r-card:18px;
+  --r-btn:10px;
+  --r-tag:999px;
+  --r-sm:6px;
+
+  --maxw:1280px;
+  --gutter:40px;
+  --section:144px;
+  --head-gap:64px;
+
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"DM Sans",system-ui,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.sec{padding:var(--section) 0}
+.sec-alt{background:var(--bg-alt)}
+.sec-tight{padding:72px 0}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{margin:0;font-weight:500;text-wrap:balance}
+.h1{font-size:72px;line-height:1.02;letter-spacing:-0.035em}
+.h2{font-size:48px;line-height:1.08;letter-spacing:-0.025em}
+.h3{font-size:21px;line-height:1.3;letter-spacing:-0.01em}
+.lead{font-size:21px;line-height:1.45;letter-spacing:-0.01em;color:var(--ink-2);margin:0}
+.body{font-size:17px;line-height:1.6;color:var(--ink-2);margin:0}
+.small{font-size:15px;line-height:1.5;color:var(--ink-2);margin:0}
+.eyebrow{
+  font-size:12px;font-weight:500;line-height:1.2;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 20px;
+}
+.sec-head{max-width:760px;margin-bottom:var(--head-gap)}
+.sec-head .lead{margin-top:20px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:50px;padding:0 26px;border-radius:var(--r-btn);
+  font-size:16px;font-weight:500;letter-spacing:-0.01em;
+  transition:background-color .15s ease,border-color .15s ease;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hi)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--ink-3)}
+.btn-light{background:#fff;color:var(--dark)}
+.btn-light:hover{background:rgba(255,255,255,0.86)}
+.btn-outline-light{border:1px solid rgba(255,255,255,0.28);color:#fff}
+.btn-outline-light:hover{border-color:rgba(255,255,255,0.6)}
+.btn-sm{height:40px;padding:0 18px;font-size:15px}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.link{color:var(--accent);font-weight:500;font-size:16px}
+.link:hover{color:var(--accent-hi);text-decoration:underline;text-underline-offset:3px}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+/* ---------- nav ---------- */
+.notes-btn{font-size:13px;color:var(--ink-3);border:1px solid var(--line);border-radius:var(--r-tag);padding:4px 13px;white-space:nowrap}
+.notes-btn:hover{color:var(--ink-2);border-color:var(--ink-3)}
+
+.nav{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:40px;height:76px}
+/* The only SVG on the page is the brand mark itself. Height drives it,
+   width follows from the viewBox aspect, and currentColor lets it sit on
+   both the cream and the dark ground. */
+.logo{display:inline-flex;align-items:center;color:var(--ink)}
+.logo-mark{display:block;height:25px;width:auto;fill:currentColor}
+.foot .logo-mark{height:29px}
+.nav-links{display:flex;gap:30px;font-size:16px;color:var(--ink-2)}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:16px;white-space:nowrap}
+.nav-right .sign{color:var(--ink-2)}
+.nav-right .sign:hover{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{padding:150px 0 120px;text-align:center}
+.hero .h1{max-width:940px;margin:0 auto 26px}
+.hero .lead{max-width:640px;margin:0 auto 40px;text-wrap:balance}
+.hero .btn-row{justify-content:center}
+.microline{margin-top:26px;font-size:14px;color:var(--ink-3)}
+
+/* ---------- product frame ---------- */
+.frame{padding-bottom:var(--section)}
+.tabs{display:flex;gap:34px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:36px}
+.tab{
+  padding:14px 0;font-size:15px;font-weight:500;color:var(--ink-3);
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+}
+.tab:hover{color:var(--ink-2)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.panel[hidden]{display:none}
+.frame-shell{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);
+  box-shadow:0 1px 2px rgba(23,25,27,0.04),0 16px 44px rgba(23,25,27,0.06);
+  overflow:hidden;
+}
+
+/* ---------- mock UI ---------- */
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
+.bento>*,.quotes>*,.plans>*,.step>*,.control>*,.compare>*,.stats>*,.foot-grid>*{min-width:0}
+.mock{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:460px}
+.frame-shell .mock{border:0;border-radius:0;min-width:560px}
+.mock-head{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:16px 22px;border-bottom:1px solid var(--line);
+  font-size:13px;color:var(--ink-2);background:var(--bg);line-height:1.4;
+}
+.mock-head b{font-weight:500;color:var(--ink)}
+.mock-foot{padding:14px 22px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);background:var(--bg);line-height:1.5}
+.row{border-bottom:1px solid var(--line-2)}
+.row:last-of-type{border-bottom:0}
+
+.cand{display:grid;grid-template-columns:38px 1fr auto auto;gap:18px;align-items:center;padding:15px 22px}
+.avatar{
+  width:38px;height:38px;border-radius:9px;background:var(--bg-alt);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:500;color:var(--ink-2);letter-spacing:0.02em;flex:none;
+}
+.cand-name{font-size:15px;font-weight:500;line-height:1.35}
+.cand-meta{font-size:13px;color:var(--ink-2);line-height:1.45}
+.cand-src{font-size:12px;color:var(--ink-3);text-align:right;white-space:nowrap}
+.match{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--accent);width:46px;text-align:right;font-variant-numeric:tabular-nums}
+.match.mid{color:var(--ink-2)}
+.cand-acts{display:flex;gap:8px}
+.mini-btn{font-size:13px;font-weight:500;border:1px solid var(--line);border-radius:var(--r-sm);padding:5px 12px;color:var(--ink-2)}
+.mini-btn.on{border-color:var(--accent);color:var(--accent)}
+
+.field{padding:18px 22px;display:flex;align-items:center;gap:14px;font-size:14px;color:var(--ink-2);border-bottom:1px solid var(--line-2)}
+.field .fake-input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:9px 13px;color:var(--ink-2);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tags{display:flex;flex-wrap:wrap;gap:9px;padding:18px 22px}
+.tag{border:1px solid var(--line);border-radius:var(--r-tag);padding:6px 14px;font-size:13px;color:var(--ink-2);background:var(--bg)}
+.tag.key{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+
+.crit{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 22px;font-size:14.5px}
+.verdict{font-size:12px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap}
+.v-yes{color:var(--accent)}
+.v-part{color:var(--ink-3)}
+.v-no{color:var(--signal-no)}
+
+.msg{padding:22px;font-size:15px;line-height:1.7;color:var(--ink)}
+.msg p{margin:0 0 14px}
+.msg p:last-child{margin:0}
+.var{color:var(--accent);background:var(--accent-bg);border-radius:4px;padding:1px 6px}
+
+.rep{display:grid;grid-template-columns:1fr 150px 54px;gap:20px;align-items:center;padding:15px 22px;font-size:14.5px}
+.bar{height:6px;background:var(--bg-alt);border-radius:3px;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--accent);border-radius:3px}
+.rep-val{font-family:var(--mono);font-size:13px;text-align:right;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+.log{display:grid;grid-template-columns:62px 1fr 128px;gap:18px;align-items:baseline;padding:14px 22px}
+.log-t{font-family:var(--mono);font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.log-a{font-size:14px;line-height:1.5}
+.log-b{font-size:12.5px;color:var(--ink-3);text-align:right}
+
+.guard{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 22px;font-size:14.5px}
+.state{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap}
+.state.on{color:var(--accent)}
+.state.off{color:var(--ink-3)}
+
+/* ---------- logo band ---------- */
+.logos{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:40px;margin-top:32px}
+.logos span{font-size:20px;font-weight:700;letter-spacing:-0.02em;color:var(--ink-3)}
+
+/* ---------- before and after ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:30px 32px 12px}
+.tl-cap{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 22px}
+.tl-row{display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-2);font-size:15.5px}
+.tl-row:last-child{border-bottom:0}
+.tl-t{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tl-now .tl-cap{color:var(--accent)}
+.tl-now .tl-t{color:var(--accent)}
+
+/* ---------- stat strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:24px}
+.stat{padding:32px 40px 0 0}
+.stat + .stat{padding-left:40px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:52px;font-weight:500;letter-spacing:-0.04em;line-height:1;margin-bottom:14px;font-variant-numeric:tabular-nums}
+
+/* ---------- steps ---------- */
+.step{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:88px;align-items:center;padding:64px 0;border-top:1px solid var(--line)}
+.step:first-of-type{border-top:0;padding-top:0}
+.step-num{font-family:var(--mono);font-size:13px;letter-spacing:0.08em;color:var(--accent);margin-bottom:18px}
+.step h3{margin-bottom:14px;font-size:26px}
+
+/* ---------- agent cards ---------- */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:32px;display:flex;flex-direction:column}
+.card h3{font-size:24px}
+.card .body{font-size:16.5px}
+.card .scroller{margin-top:26px}
+.card .mock{min-width:400px}
+.card-learn{margin-top:auto;padding-top:24px;display:inline-block;align-self:flex-start}
+
+/* ---------- audience row ---------- */
+.audience{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.audience div{flex:1 1 180px;padding:28px 28px;font-size:18px;font-weight:500;border-right:1px solid var(--line)}
+.audience div:last-child{border-right:0}
+
+/* ---------- shared context diagram ---------- */
+.layer{max-width:1000px;margin:0 auto}
+.layer-brief{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);max-width:600px;margin:0 auto}
+.layer-brief .tags{padding:20px 24px}
+.rail{position:relative;height:64px}
+.rail::before{content:"";position:absolute;left:50%;top:0;width:1px;height:32px;background:var(--line)}
+.rail::after{content:"";position:absolute;left:10%;right:10%;top:32px;height:1px;background:var(--line)}
+.layer-agents{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.chip{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 18px;text-align:center}
+.chip::before{content:"";position:absolute;left:50%;top:-32px;width:1px;height:32px;background:var(--line)}
+.chip b{display:block;font-size:15px;font-weight:500;margin-bottom:6px}
+.chip span{font-size:12.5px;color:var(--ink-3)}
+.loop{position:relative;margin-top:0;padding-top:56px;text-align:center}
+.loop::before{content:"";position:absolute;left:10%;right:10%;top:32px;height:1px;background:var(--line)}
+.loop::after{content:"";position:absolute;left:50%;top:32px;width:1px;height:24px;background:var(--line)}
+.loop-label{display:inline-block;background:var(--bg-alt);padding:0 18px;font-size:15px;color:var(--ink-2);position:relative;z-index:1}
+
+/* ---------- control ---------- */
+.control{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+/* ---------- quotes ---------- */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.quote{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:32px;display:flex;flex-direction:column}
+.quote .metric{font-size:23px;font-weight:500;letter-spacing:-0.02em;line-height:1.3;margin-bottom:16px}
+.quote .body{font-size:15.5px;flex:1}
+.who{display:flex;align-items:center;gap:14px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.who-name{font-size:14.5px;font-weight:500;line-height:1.35}
+.who-role{font-size:13px;color:var(--ink-2);line-height:1.4}
+
+/* ---------- pricing ---------- */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-card);padding:32px;display:flex;flex-direction:column}
+.plan h3{margin-bottom:8px}
+.plan .who-for{font-size:14.5px;color:var(--ink-3);margin:0 0 24px}
+.plan ul{list-style:none;margin:0 0 28px;padding:0;flex:1}
+.plan li{padding:11px 0;border-bottom:1px solid var(--line-2);font-size:15px;color:var(--ink-2)}
+
+/* ---------- dark cta ---------- */
+.dark{background:var(--dark);color:#fff;text-align:center}
+.dark .h2{margin-bottom:20px}
+.dark .lead{color:rgba(255,255,255,0.74);max-width:520px;margin:0 auto 40px}
+.dark .btn-row{justify-content:center}
+
+/* ---------- faq ---------- */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:26px 48px 26px 0;position:relative;
+  font-size:19px;font-weight:500;letter-spacing:-0.01em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:8px;top:22px;
+  font-size:22px;font-weight:400;color:var(--ink-3);
+  display:inline-block;transition:transform .15s ease;
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .answer{padding:0 48px 28px 0;font-size:16.5px;line-height:1.6;color:var(--ink-2)}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--line);padding:72px 0 48px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:40px}
+/* Social marks are drawn here rather than pulled from an icon set, so the
+   stroke weight matches the hairlines used everywhere else on the page. */
+.social{display:flex;gap:18px;margin-top:26px}
+.social a{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:24px;height:24px;color:var(--ink-2);
+  transition:color .15s ease;
+}
+.social a:hover{color:var(--accent)}
+.social svg{display:block;width:23px;height:23px}
+.foot h4{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{padding:6px 0;font-size:15px;color:var(--ink-2)}
+.foot li a:hover{color:var(--ink)}
+.foot-base{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:28px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-3)}
+
+/* ---------- review notes ---------- */
+.note{display:none}
+body.notes-on .note{
+  display:block;background:var(--surface);border:1px solid var(--line);
+  border-left:2px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;
+  padding:14px 18px;margin:0 0 32px;font-size:14px;line-height:1.55;color:var(--ink-2);
+  max-width:780px;
+}
+body.notes-on .note b{color:var(--ink);font-weight:500}
+
+/* ------------------------------------------------------------------
+   ANIMATED GRADIENT WAVES
+   Ported from reactbits.dev/backgrounds/gradient-waves (WebGL2 + ogl)
+   to plain WebGL1: no dependency to load, and it runs on older phones.
+   The edge fade lives in the shader rather than a CSS mask, so nothing
+   has to be re-composited while the page scrolls.
+------------------------------------------------------------------ */
+.hero,.dark{position:relative;isolation:isolate;overflow:hidden}
+.hero>.wrap,.dark>.wrap{position:relative;z-index:1}
+.gw{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.gw canvas{display:block;width:100%;height:100%}
+.gw-fallback[data-gw="light"]{background:radial-gradient(120% 88% at 50% 108%,rgba(30,107,78,0.20) 0%,rgba(30,107,78,0.07) 44%,rgba(251,250,247,0) 74%)}
+.gw-fallback[data-gw="dark"]{background:radial-gradient(120% 88% at 50% 108%,rgba(46,122,91,0.30) 0%,rgba(19,51,39,0.16) 46%,rgba(15,31,25,0) 76%)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:0.01ms !important;animation-duration:0.01ms !important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  :root{--section:112px;--gutter:32px;--head-gap:52px}
+  .h1{font-size:56px}
+  .h2{font-size:40px}
+  .step{gap:56px}
+  .hero{padding:112px 0 92px}
+}
+@media (max-width:900px){
+  :root{--section:88px;--head-gap:44px}
+  .h1{font-size:46px}
+  .h2{font-size:34px}
+  .lead{font-size:19px}
+  .nav-links{display:none}
+  .step{grid-template-columns:1fr;gap:32px;padding:48px 0}
+  .bento,.compare,.control{grid-template-columns:1fr}
+  .quotes,.plans{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .stat,.stat + .stat{padding:26px 0;border-left:0;border-top:1px solid var(--line)}
+  .stat:first-child{border-top:0}
+  .stat b{font-size:44px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .layer-agents{grid-template-columns:repeat(2,1fr)}
+  .rail{height:36px}
+  .rail::after,.chip::before,.loop::before,.loop::after{display:none}
+  .loop{padding-top:32px}
+  .loop-label{background:none;padding:0}
+}
+@media (max-width:640px){
+  :root{--gutter:20px;--section:72px}
+  .h1{font-size:38px}
+  .h2{font-size:29px}
+  body{font-size:16px}
+  .hero{padding:72px 0 64px}
+  .nav .wrap{gap:14px;height:66px}
+  .nav-right{gap:10px}
+  .logo-mark{height:20px}
+  .notes-btn{font-size:12px;padding:3px 10px}
+  .nav-right .sign{display:none}
+  .btn{width:100%}
+  .btn-row{flex-direction:column;width:100%}
+  .audience div{flex-basis:100%;border-right:0;border-bottom:1px solid var(--line)}
+  /* Tabs scroll sideways instead of wrapping into a loose second row. */
+  .tabs{flex-wrap:nowrap;overflow-x:auto;gap:26px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;flex:none}
+  .layer-agents{grid-template-columns:1fr}
+  .card,.quote,.plan,.tl{padding:24px}
+  .foot-grid{grid-template-columns:1fr}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- HireGio wordmark. Clip paths and fixed sizes from the export were
+         removed: they clipped nothing and would have collided as duplicate
+         ids once the mark is used twice on the page. -->
+    <g id="hiregio-mark" transform="translate(89,375)">
+      <path transform="translate(3.431577,561.049165)" d="M 95.9375 -233.96875 L 49.921875 -73.75 L 50.578125 -73.09375 C 64.929688 -96.582031 79.070312 -115.125 93 -128.71875 C 106.925781 -142.320312 119.648438 -149.125 131.171875 -149.125 C 135.304688 -149.125 139.273438 -147.328125 143.078125 -143.734375 C 146.890625 -140.148438 148.796875 -135.421875 148.796875 -129.546875 C 148.796875 -122.585938 147.273438 -113.773438 144.234375 -103.109375 L 124.984375 -36.875 C 123.453125 -31.875 122.359375 -27.957031 121.703125 -25.125 C 121.054688 -22.300781 120.734375 -19.910156 120.734375 -17.953125 C 120.734375 -15.992188 121.113281 -14.578125 121.875 -13.703125 C 122.632812 -12.835938 123.453125 -12.40625 124.328125 -12.40625 C 126.722656 -12.40625 130.472656 -15.066406 135.578125 -20.390625 C 140.691406 -25.722656 144.878906 -30.671875 148.140625 -35.234375 L 153.046875 -31.65625 C 147.390625 -23.164062 140.207031 -15.113281 131.5 -7.5 C 122.800781 0.113281 114.863281 3.921875 107.6875 3.921875 C 103.769531 3.921875 100.664062 2.507812 98.375 -0.3125 C 96.09375 -3.144531 94.953125 -6.410156 94.953125 -10.109375 C 94.953125 -15.117188 96.148438 -21.539062 98.546875 -29.375 L 118.125 -97.890625 C 121.382812 -108.554688 123.015625 -115.953125 123.015625 -120.078125 C 123.015625 -123.347656 122.195312 -125.957031 120.5625 -127.90625 C 118.9375 -129.863281 116.925781 -130.84375 114.53125 -130.84375 C 107.789062 -130.84375 99.253906 -125.566406 88.921875 -115.015625 C 78.585938 -104.472656 67.765625 -90.390625 56.453125 -72.765625 C 49.054688 -60.804688 43.289062 -47.863281 39.15625 -33.9375 L 29.046875 0 L 4.5625 0 L 55.46875 -177.1875 C 58.519531 -187.414062 60.695312 -195.03125 62 -200.03125 C 63.300781 -205.03125 63.953125 -208.835938 63.953125 -211.453125 C 63.953125 -215.367188 62.535156 -217.816406 59.703125 -218.796875 C 56.878906 -219.773438 52.207031 -220.265625 45.6875 -220.265625 L 45.6875 -226.140625 L 90.390625 -233.96875 Z M 95.9375 -233.96875 "/>
+      <path transform="translate(143.740806,561.049165)" d="M 77.65625 -214.390625 C 82.226562 -214.390625 86.144531 -212.753906 89.40625 -209.484375 C 92.664062 -206.222656 94.296875 -202.421875 94.296875 -198.078125 C 94.296875 -193.503906 92.664062 -189.585938 89.40625 -186.328125 C 86.144531 -183.066406 82.226562 -181.4375 77.65625 -181.4375 C 73.3125 -181.4375 69.503906 -183.066406 66.234375 -186.328125 C 62.972656 -189.585938 61.34375 -193.503906 61.34375 -198.078125 C 61.34375 -202.421875 62.972656 -206.222656 66.234375 -209.484375 C 69.503906 -212.753906 73.3125 -214.390625 77.65625 -214.390625 Z M 45.6875 -29.046875 C 43.945312 -23.390625 43.078125 -19.472656 43.078125 -17.296875 C 43.078125 -13.816406 44.925781 -12.078125 48.625 -12.078125 C 51.226562 -12.078125 54.867188 -14.085938 59.546875 -18.109375 C 64.222656 -22.128906 69.066406 -28.054688 74.078125 -35.890625 L 79.296875 -32.625 C 72.117188 -21.53125 64.066406 -12.664062 55.140625 -6.03125 C 46.222656 0.601562 38.066406 3.921875 30.671875 3.921875 C 26.316406 3.921875 23 2.507812 20.71875 -0.3125 C 18.4375 -3.144531 17.296875 -6.957031 17.296875 -11.75 C 17.296875 -15.226562 17.945312 -19.253906 19.25 -23.828125 L 45.359375 -113.5625 C 46.878906 -119 47.640625 -122.804688 47.640625 -124.984375 C 47.640625 -127.804688 46.660156 -130.304688 44.703125 -132.484375 C 42.742188 -134.660156 39.804688 -135.75 35.890625 -135.75 C 34.367188 -135.75 30.238281 -135.203125 23.5 -134.109375 L 25.125 -139.65625 L 74.71875 -149.125 L 80.265625 -149.125 Z M 45.6875 -29.046875 "/>
+      <path transform="translate(209.325836,561.049165)" d="M 69.171875 -149.125 L 49.265625 -64.609375 C 53.179688 -74.179688 58.785156 -85.601562 66.078125 -98.875 C 73.367188 -112.144531 81.144531 -123.835938 89.40625 -133.953125 C 97.675781 -144.066406 105.179688 -149.125 111.921875 -149.125 C 114.753906 -149.125 117.253906 -148.144531 119.421875 -146.1875 C 121.597656 -144.226562 122.6875 -141.289062 122.6875 -137.375 C 122.6875 -131.28125 121.4375 -125.078125 118.9375 -118.765625 C 116.4375 -112.460938 112.25 -109.3125 106.375 -109.3125 C 103.332031 -109.3125 101.265625 -110.070312 100.171875 -111.59375 C 99.085938 -113.125 98.21875 -115.410156 97.5625 -118.453125 C 97.132812 -120.628906 96.644531 -122.207031 96.09375 -123.1875 C 95.550781 -124.164062 94.519531 -124.65625 93 -124.65625 C 89.300781 -124.65625 84.078125 -118.78125 77.328125 -107.03125 C 70.585938 -95.28125 63.953125 -81.789062 57.421875 -66.5625 C 50.898438 -51.332031 46.550781 -39.914062 44.375 -32.3125 L 35.234375 0 L 11.09375 0 L 36.875 -105.40625 C 37.09375 -106.050781 37.742188 -108.710938 38.828125 -113.390625 C 39.921875 -118.066406 40.46875 -122.253906 40.46875 -125.953125 C 40.46875 -129.429688 39.488281 -131.710938 37.53125 -132.796875 C 35.570312 -133.890625 32.957031 -134.4375 29.6875 -134.4375 C 27.300781 -134.4375 25.179688 -134.328125 23.328125 -134.109375 C 21.484375 -133.890625 20.015625 -133.675781 18.921875 -133.46875 L 20.5625 -139.65625 L 63.625 -149.125 Z M 69.171875 -149.125 "/>
+      <path transform="translate(302.646532,561.049165)" d="M 105.71875 -149.125 C 114.863281 -149.125 122.535156 -146.835938 128.734375 -142.265625 C 134.929688 -137.703125 138.03125 -131.832031 138.03125 -124.65625 C 138.03125 -117.6875 134.765625 -109.742188 128.234375 -100.828125 C 121.710938 -91.910156 111.109375 -84.023438 96.421875 -77.171875 C 81.742188 -70.316406 63.09375 -66.566406 40.46875 -65.921875 C 39.15625 -61.566406 38.5 -56.234375 38.5 -49.921875 C 38.5 -36.648438 42.085938 -27.023438 49.265625 -21.046875 C 56.453125 -15.066406 64.394531 -12.078125 73.09375 -12.078125 C 87.664062 -12.078125 102.457031 -19.363281 117.46875 -33.9375 L 121.71875 -30.015625 C 98.4375 -7.390625 75.921875 3.921875 54.171875 3.921875 C 45.253906 3.921875 37.476562 1.691406 30.84375 -2.765625 C 24.207031 -7.234375 19.203125 -13.054688 15.828125 -20.234375 C 12.453125 -27.410156 10.765625 -34.804688 10.765625 -42.421875 C 10.765625 -57.648438 15.171875 -73.640625 23.984375 -90.390625 C 32.796875 -107.140625 44.539062 -121.113281 59.21875 -132.3125 C 73.90625 -143.519531 89.40625 -149.125 105.71875 -149.125 Z M 42.421875 -72.109375 C 57.210938 -73.203125 69.175781 -75.707031 78.3125 -79.625 C 87.226562 -83.539062 94.457031 -88.597656 100 -94.796875 C 105.550781 -100.992188 109.523438 -107.082031 111.921875 -113.0625 C 114.316406 -119.050781 115.515625 -124.003906 115.515625 -127.921875 C 115.515625 -131.617188 114.15625 -135.039062 111.4375 -138.1875 C 108.71875 -141.34375 104.859375 -142.921875 99.859375 -142.921875 C 91.148438 -142.921875 82.71875 -138.894531 74.5625 -130.84375 C 66.40625 -122.800781 59.441406 -113.234375 53.671875 -102.140625 C 47.910156 -91.046875 44.160156 -81.035156 42.421875 -72.109375 Z M 42.421875 -72.109375 "/>
+      <path transform="translate(488.720892,568.108774)" d="M 163.765625 4.28125 C 132.660156 4.28125 106.238281 -3.8125 84.5 -20 C 62.757812 -36.1875 46.492188 -57.289062 35.703125 -83.3125 C 24.910156 -109.332031 19.515625 -137.101562 19.515625 -166.625 C 19.515625 -197.09375 25.144531 -225.492188 36.40625 -251.828125 C 47.675781 -278.171875 64.738281 -299.4375 87.59375 -315.625 C 110.445312 -331.8125 138.375 -339.90625 171.375 -339.90625 C 209.144531 -339.90625 240.171875 -329.351562 264.453125 -308.25 C 288.734375 -287.144531 305.789062 -259.613281 315.625 -225.65625 L 237.5625 -225.65625 C 233.425781 -240.570312 225.804688 -252.472656 214.703125 -261.359375 C 203.597656 -270.242188 189.316406 -274.6875 171.859375 -274.6875 C 146.785156 -274.6875 127.582031 -264.6875 114.25 -244.6875 C 100.925781 -224.695312 94.265625 -198.039062 94.265625 -164.71875 C 94.265625 -129.800781 101.40625 -102.742188 115.6875 -83.546875 C 129.96875 -64.347656 149.960938 -54.75 175.671875 -54.75 C 197.878906 -54.75 214.773438 -61.570312 226.359375 -75.21875 C 237.953125 -88.863281 243.90625 -104.890625 244.21875 -123.296875 L 244.21875 -129.484375 L 181.859375 -129.484375 L 181.859375 -182.328125 L 317.0625 -182.328125 L 317.0625 0 L 262.3125 0 L 262.3125 -47.125 L 258.5 -47.125 C 239.78125 -12.851562 208.203125 4.28125 163.765625 4.28125 Z M 163.765625 4.28125 "/>
+      <path transform="translate(799.587672,568.108774)" d="M 28.09375 -333.25 L 102.828125 -333.25 L 102.828125 0 L 28.09375 0 Z M 28.09375 -333.25 "/>
+      <path transform="translate(892.894899,568.108774)" d="M 171.859375 4.28125 C 138.535156 4.28125 110.285156 -3.410156 87.109375 -18.796875 C 63.941406 -34.191406 46.566406 -54.820312 34.984375 -80.6875 C 23.398438 -106.550781 17.609375 -135.195312 17.609375 -166.625 C 17.609375 -198.039062 23.476562 -226.921875 35.21875 -253.265625 C 46.96875 -279.609375 64.425781 -300.632812 87.59375 -316.34375 C 110.757812 -332.050781 138.847656 -339.90625 171.859375 -339.90625 C 204.234375 -339.90625 231.925781 -332.128906 254.9375 -316.578125 C 277.945312 -301.023438 295.242188 -280 306.828125 -253.5 C 318.410156 -227 324.203125 -197.878906 324.203125 -166.140625 C 324.203125 -134.410156 318.410156 -105.609375 306.828125 -79.734375 C 295.242188 -53.867188 277.945312 -33.398438 254.9375 -18.328125 C 231.925781 -3.253906 204.234375 4.28125 171.859375 4.28125 Z M 171.375 -61.890625 C 194.863281 -61.890625 213.035156 -71.882812 225.890625 -91.875 C 238.742188 -111.875 245.171875 -136.945312 245.171875 -167.09375 C 245.171875 -196.925781 238.820312 -222.15625 226.125 -242.78125 C 213.4375 -263.414062 195.1875 -273.734375 171.375 -273.734375 C 155.195312 -273.734375 141.472656 -268.8125 130.203125 -258.96875 C 118.929688 -249.132812 110.519531 -236.125 104.96875 -219.9375 C 99.414062 -203.75 96.640625 -186.132812 96.640625 -167.09375 C 96.640625 -137.582031 103.066406 -112.671875 115.921875 -92.359375 C 128.773438 -72.046875 147.257812 -61.890625 171.375 -61.890625 Z M 171.375 -61.890625 "/>
+      <path transform="translate(1198.524932,568.108774)" d="M 79.984375 4.28125 C 68.234375 4.28125 58.550781 0.316406 50.9375 -7.609375 C 43.320312 -15.546875 39.515625 -25.226562 39.515625 -36.65625 C 39.515625 -48.082031 43.320312 -57.679688 50.9375 -65.453125 C 58.550781 -73.234375 68.234375 -77.125 79.984375 -77.125 C 91.722656 -77.125 101.476562 -73.234375 109.25 -65.453125 C 117.03125 -57.679688 120.921875 -48.082031 120.921875 -36.65625 C 120.921875 -25.226562 116.953125 -15.546875 109.015625 -7.609375 C 101.078125 0.316406 91.398438 4.28125 79.984375 4.28125 Z M 79.984375 4.28125 "/>
+    </g>
+  </defs>
+</svg>
+
+<!-- An announcement bar sits here on all three competitors. Add one back
+     when there is something real to announce. -->
+
+<!-- ================= 01 NAV ================= -->
+<header class="nav">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="HireGio">
+      <svg class="logo-mark" viewBox="91 597 1323 356" role="img" aria-label="HireGio"><use href="#hiregio-mark"></use></svg>
+    </a>
+    <nav class="nav-links">
+      <a href="#agents">Platform</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#proof">Customers</a>
+      <a href="#faq">Resources</a>
+    </nav>
+    <div class="nav-right">
+      <button class="notes-btn" id="notesBtn" aria-pressed="false">Notes: off</button>
+      <a href="#" class="sign">Sign in</a>
+      <a href="#cta" class="btn btn-primary btn-sm">Book a demo</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 03 HERO ================= -->
+<section class="hero">
+  <div class="gw" data-gw="light" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="note" style="margin-left:auto;margin-right:auto"><b>Tikslas:</b> per penkias sekundes klientas supranta rezultatą. Visi trys konkurentai naudoja 3 iki 5 žodžių antraštę su tašku gale.</div>
+    <p class="eyebrow">The agentic recruiting platform</p>
+    <h1 class="h1">Your recruiting team, multiplied.</h1>
+    <p class="lead">Agents source, screen and reach out. You decide who to interview.</p>
+    <div class="btn-row">
+      <a href="#cta" class="btn btn-primary">Book a demo</a>
+      <a href="#cta" class="btn btn-ghost">Start for free</a>
+    </div>
+    <p class="microline">Works with Greenhouse, Lever, Ashby and 20 more</p>
+  </div>
+</section>
+
+<!-- ================= 04 PRODUCT FRAME ================= -->
+<section class="frame">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> įrodyti, kad produktas egzistuoja. Metaview turi tokį patį tabų perjungiklį po hero. Reval ir Juicebox produkto vaizdus sudėlioja HTML, ne paveikslėliais, todėl darom taip pat.</div>
+
+    <div class="tabs" role="tablist" aria-label="Product">
+      <button class="tab" role="tab" aria-selected="true"  aria-controls="p1" id="t1">Sourcing</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2">Candidate analysis</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3">Outreach</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p5" id="t4">Reports</button>
+    </div>
+
+    <div class="frame-shell">
+      <div class="panel scroller" id="p1" role="tabpanel" aria-labelledby="t1">
+        <div class="mock">
+          <div class="mock-head">
+            <span><b>Senior Backend Engineer, Berlin</b></span>
+            <span>428 scanned, 12 shortlisted, 6 hours after the brief</span>
+          </div>
+          <div class="row cand">
+            <div class="avatar">MH</div>
+            <div><div class="cand-name">M. Halvorsen</div><div class="cand-meta">Staff Backend Engineer, Klarna</div></div>
+            <div class="cand-src">LinkedIn</div><div class="match">96%</div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">AO</div>
+            <div><div class="cand-name">A. Okonkwo</div><div class="cand-meta">Senior Backend Engineer, Bolt</div></div>
+            <div class="cand-src">GitHub</div><div class="match">93%</div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">TL</div>
+            <div><div class="cand-name">T. Lindqvist</div><div class="cand-meta">Backend Engineer, Spotify</div></div>
+            <div class="cand-src">Your past candidates</div><div class="match">89%</div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">RB</div>
+            <div><div class="cand-name">R. Baumann</div><div class="cand-meta">Senior Platform Engineer, N26</div></div>
+            <div class="cand-src">LinkedIn</div><div class="match mid">84%</div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">JP</div>
+            <div><div class="cand-name">J. Petrauskas</div><div class="cand-meta">Backend Engineer, Vinted</div></div>
+            <div class="cand-src">Conference talks</div><div class="match mid">81%</div>
+          </div>
+          <div class="mock-foot">Still running. New matches are added as they appear.</div>
+        </div>
+      </div>
+
+      <div class="panel scroller" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+        <div class="mock">
+          <div class="mock-head"><span><b>M. Halvorsen</b>, scored against 6 criteria</span><span>2 minutes ago</span></div>
+          <div class="row crit"><span>7+ years building backend systems in production</span><span class="verdict v-yes">Meets</span></div>
+          <div class="row crit"><span>Go or Rust at meaningful scale</span><span class="verdict v-yes">Meets</span></div>
+          <div class="row crit"><span>Has led a migration off a monolith</span><span class="verdict v-yes">Meets</span></div>
+          <div class="row crit"><span>Payments or fintech domain</span><span class="verdict v-part">Partial</span></div>
+          <div class="row crit"><span>Has managed a team of 3 or more</span><span class="verdict v-no">No evidence</span></div>
+          <div class="row crit"><span>Based in Berlin or open to relocating</span><span class="verdict v-yes">Meets</span></div>
+          <div class="mock-foot">Evidence: led the ledger rewrite in Go across 40 services. No direct reports listed on any role.</div>
+        </div>
+      </div>
+
+      <div class="panel scroller" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+        <div class="mock">
+          <div class="mock-head"><span>Draft to <b>A. Okonkwo</b></span><span>Tone: direct, signed by Rasa</span></div>
+          <div class="msg">
+            <p>Hi <span class="var">Ada</span>,</p>
+            <p>I read your write-up on <span class="var">cutting p99 latency in half at Bolt</span>. We are rebuilding the ledger at <span class="var">HireGio</span> and that exact problem sits in the middle of it.</p>
+            <p>Worth 20 minutes this week?</p>
+          </div>
+          <div class="mock-foot">Sends 09:12 local time. Follow-ups stop the moment she replies.</div>
+        </div>
+      </div>
+
+      <div class="panel scroller" id="p5" role="tabpanel" aria-labelledby="t4" hidden>
+        <div class="mock">
+          <div class="mock-head"><span><b>Last 30 days</b>, Senior Backend Engineer</span><span>Updated this morning</span></div>
+          <div class="row rep"><span>Reply rate to first message</span><span class="bar"><span style="width:42%"></span></span><span class="rep-val">42%</span></div>
+          <div class="row rep"><span>Shortlist accepted by the hiring manager</span><span class="bar"><span style="width:78%"></span></span><span class="rep-val">78%</span></div>
+          <div class="row rep"><span>Screen to onsite</span><span class="bar"><span style="width:34%"></span></span><span class="rep-val">34%</span></div>
+          <div class="row rep"><span>Sourced to offer</span><span class="bar"><span style="width:12%"></span></span><span class="rep-val">12%</span></div>
+          <div class="mock-foot">Best predictor of an offer right now: "led a migration off a monolith".</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 LOGO BAND ================= -->
+<section class="sec-tight">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> kreditas prieš paaiškinimą. Placeholder pavadinimai, keičiam į realius klientus. Svetimų logotipų be leidimo nededam.</div>
+    <p class="eyebrow">Trusted by teams hiring at speed</p>
+    <div class="logos">
+      <span>Northwind</span><span>Meridian</span><span>Kestrel</span>
+      <span>Fieldbook</span><span>Loomis</span><span>Arcadia</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 BEFORE AND AFTER ================= -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> pakeičia ilgą pastraipą apie problemą. Vietoj teksto rodom dvi tikras laiko juostas, kad skirtumas būtų matomas, o ne aiškinamas.</div>
+    <div class="sec-head">
+      <p class="eyebrow">The difference</p>
+      <h2 class="h2">Same role. Same brief. One week apart.</h2>
+    </div>
+
+    <div class="compare">
+      <div class="tl">
+        <p class="tl-cap">Doing it by hand</p>
+        <div class="tl-row"><span class="tl-t">Day 1</span><span>Intake call, brief written down somewhere</span></div>
+        <div class="tl-row"><span class="tl-t">Day 2 to 4</span><span>Boolean strings, tabs, spreadsheets</span></div>
+        <div class="tl-row"><span class="tl-t">Day 5</span><span>First shortlist, 40 profiles skimmed</span></div>
+        <div class="tl-row"><span class="tl-t">Day 9</span><span>First reply worth reading</span></div>
+      </div>
+      <div class="tl tl-now">
+        <p class="tl-cap">With agents</p>
+        <div class="tl-row"><span class="tl-t">09:12</span><span>Brief approved from the job link</span></div>
+        <div class="tl-row"><span class="tl-t">09:18</span><span>428 profiles read against your criteria</span></div>
+        <div class="tl-row"><span class="tl-t">15:40</span><span>12 shortlisted, 9 contacted after your approval</span></div>
+        <div class="tl-row"><span class="tl-t">Day 2</span><span>First interviews on the calendar</span></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>6h</b><p class="body">From brief to first ranked shortlist.</p></div>
+      <div class="stat"><b>428</b><p class="body">Profiles read per role, not filtered by keyword.</p></div>
+      <div class="stat"><b>4</b><p class="body">Agents working from one shared brief.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 HOW IT WORKS ================= -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="note"><b>Svarbiausia sekcija.</b> Visi trys konkurentai ją turi, Reval versija stipriausia. Klientas čia atsako į savo pagrindinę abejonę: ar agentas realiai dirba. Tekstas trumpas, dirba vaizdai.</div>
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Four steps, and you are back to talking to people.</h2>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">01</div>
+        <h3 class="h3">Set the brief</h3>
+        <p class="body">Paste a job link. Correct what the agent got wrong. That brief is what every agent works from.</p>
+      </div>
+      <div class="scroller">
+        <div class="mock">
+          <div class="mock-head"><span><b>New role</b></span><span>Imported in 12 seconds</span></div>
+          <div class="field"><span>Job link</span><span class="fake-input">jobs.ashbyhq.com/hiregio/senior-backend-engineer</span></div>
+          <div class="tags">
+            <span class="tag key">7+ years backend</span>
+            <span class="tag key">Go or Rust</span>
+            <span class="tag key">Monolith migration</span>
+            <span class="tag">Payments domain</span>
+            <span class="tag">Berlin or relocating</span>
+            <span class="tag">Team lead experience</span>
+          </div>
+          <div class="mock-foot">Three marked must-have. Edit one and every agent updates.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">02</div>
+        <h3 class="h3">Agents source</h3>
+        <p class="body">They search across sources and your own past candidates, ranked against the brief rather than keywords.</p>
+      </div>
+      <div class="scroller">
+        <div class="mock">
+          <div class="mock-head"><span><b>Sourcing</b>, running</span><span>428 scanned, 12 shortlisted</span></div>
+          <div class="row cand">
+            <div class="avatar">MH</div>
+            <div><div class="cand-name">M. Halvorsen</div><div class="cand-meta">Staff Backend Engineer, Klarna</div></div>
+            <div class="cand-src">LinkedIn</div><div class="match">96%</div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">AO</div>
+            <div><div class="cand-name">A. Okonkwo</div><div class="cand-meta">Senior Backend Engineer, Bolt</div></div>
+            <div class="cand-src">GitHub</div><div class="match">93%</div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">TL</div>
+            <div><div class="cand-name">T. Lindqvist</div><div class="cand-meta">Backend Engineer, Spotify</div></div>
+            <div class="cand-src">Your past candidates</div><div class="match">89%</div>
+          </div>
+          <div class="mock-foot">People you have spoken to before are checked first.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">03</div>
+        <h3 class="h3">Agents analyse and reach out</h3>
+        <p class="body">Scored criterion by criterion with the evidence attached, then a message written from the candidate's own work.</p>
+      </div>
+      <div class="scroller">
+        <div class="mock">
+          <div class="mock-head"><span><b>A. Okonkwo</b></span><span>Scored, then drafted</span></div>
+          <div class="row crit"><span>Go or Rust at meaningful scale</span><span class="verdict v-yes">Meets</span></div>
+          <div class="row crit"><span>Has led a migration off a monolith</span><span class="verdict v-yes">Meets</span></div>
+          <div class="row crit"><span>Payments or fintech domain</span><span class="verdict v-part">Partial</span></div>
+          <div class="msg" style="border-top:1px solid var(--line)">
+            <p>I read your write-up on <span class="var">cutting p99 latency in half at Bolt</span>. We are rebuilding the ledger and that problem sits in the middle of it.</p>
+          </div>
+          <div class="mock-foot">Nothing is sent until you release it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div>
+        <div class="step-num">04</div>
+        <h3 class="h3">You interview</h3>
+        <p class="body">A shortlist that already explains itself. Every accept and pass goes back into the brief.</p>
+      </div>
+      <div class="scroller">
+        <div class="mock">
+          <div class="mock-head"><span><b>Ready for you</b></span><span>3 replied within 24 hours</span></div>
+          <div class="row cand">
+            <div class="avatar">AO</div>
+            <div><div class="cand-name">A. Okonkwo</div><div class="cand-meta">Available from March</div></div>
+            <div class="match">93%</div>
+            <div class="cand-acts"><span class="mini-btn on">Interview</span><span class="mini-btn">Pass</span></div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">MH</div>
+            <div><div class="cand-name">M. Halvorsen</div><div class="cand-meta">Wants to hear about the team</div></div>
+            <div class="match">96%</div>
+            <div class="cand-acts"><span class="mini-btn on">Interview</span><span class="mini-btn">Pass</span></div>
+          </div>
+          <div class="row cand">
+            <div class="avatar">RB</div>
+            <div><div class="cand-name">R. Baumann</div><div class="cand-meta">Open to a conversation</div></div>
+            <div class="match mid">84%</div>
+            <div class="cand-acts"><span class="mini-btn">Interview</span><span class="mini-btn on">Pass</span></div>
+          </div>
+          <div class="mock-foot">You passed on R. Baumann. The agent asks why once, then stops surfacing that profile shape.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 THE AGENTS ================= -->
+<section class="sec sec-alt" id="agents">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> gylis. Kiekviena paslauga gauna kortelę, kaip pas Metaview ir Juicebox. Anksčiau čia buvo po tris bullet eilutes kiekvienoje, išmečiau: dirba mockup'as, ne sąrašas.</div>
+    <div class="sec-head">
+      <p class="eyebrow">The platform</p>
+      <h2 class="h2">Four agents, one brief.</h2>
+      <p class="lead">Switch on one or all four. What one learns, the others already know.</p>
+    </div>
+
+    <div class="bento">
+      <div class="card">
+        <h3 class="h3">Sourcing</h3>
+        <p class="body">Searches around the clock and hands back a ranked shortlist while the role is still fresh.</p>
+        <div class="scroller">
+          <div class="mock">
+            <div class="mock-head"><span><b>12 shortlisted</b></span><span>of 428 scanned</span></div>
+            <div class="row cand"><div class="avatar">MH</div><div><div class="cand-name">M. Halvorsen</div><div class="cand-meta">Staff Backend Engineer, Klarna</div></div><div class="cand-src">LinkedIn</div><div class="match">96%</div></div>
+            <div class="row cand"><div class="avatar">AO</div><div><div class="cand-name">A. Okonkwo</div><div class="cand-meta">Senior Backend Engineer, Bolt</div></div><div class="cand-src">GitHub</div><div class="match">93%</div></div>
+            <div class="row cand"><div class="avatar">TL</div><div><div class="cand-name">T. Lindqvist</div><div class="cand-meta">Backend Engineer, Spotify</div></div><div class="cand-src">Past candidates</div><div class="match">89%</div></div>
+          </div>
+        </div>
+        <a href="#" class="link card-learn">Learn more</a>
+      </div>
+
+      <div class="card">
+        <h3 class="h3">Candidate analysis</h3>
+        <p class="body">Every profile, sourced or inbound, read against your criteria with the evidence quoted underneath.</p>
+        <div class="scroller">
+          <div class="mock">
+            <div class="mock-head"><span><b>M. Halvorsen</b></span><span>6 criteria</span></div>
+            <div class="row crit"><span>Go or Rust at meaningful scale</span><span class="verdict v-yes">Meets</span></div>
+            <div class="row crit"><span>Payments or fintech domain</span><span class="verdict v-part">Partial</span></div>
+            <div class="row crit"><span>Has managed a team of 3 or more</span><span class="verdict v-no">No evidence</span></div>
+          </div>
+        </div>
+        <a href="#" class="link card-learn">Learn more</a>
+      </div>
+
+      <div class="card">
+        <h3 class="h3">Personalized outreach</h3>
+        <p class="body">Drafted from what the candidate actually built. Approve in bulk, follow-ups schedule themselves.</p>
+        <div class="scroller">
+          <div class="mock">
+            <div class="mock-head"><span>Draft to <b>A. Okonkwo</b></span><span>Awaiting approval</span></div>
+            <div class="msg">
+              <p>Hi <span class="var">Ada</span>, I read your write-up on <span class="var">cutting p99 latency in half at Bolt</span>. We are rebuilding the ledger and that problem sits in the middle of it.</p>
+            </div>
+            <div class="mock-foot">3 follow-ups scheduled</div>
+          </div>
+        </div>
+        <a href="#" class="link card-learn">Learn more</a>
+      </div>
+
+      <div class="card">
+        <h3 class="h3">Reports</h3>
+        <p class="body">Where replies come from, which criteria predict an offer, and how the brief has moved since you opened the role.</p>
+        <div class="scroller">
+          <div class="mock">
+            <div class="mock-head"><span><b>Last 30 days</b></span><span>Updated this morning</span></div>
+            <div class="row rep"><span>Reply rate to first message</span><span class="bar"><span style="width:42%"></span></span><span class="rep-val">42%</span></div>
+            <div class="row rep"><span>Shortlist accepted by the hiring manager</span><span class="bar"><span style="width:78%"></span></span><span class="rep-val">78%</span></div>
+            <div class="row rep"><span>Screen to onsite</span><span class="bar"><span style="width:34%"></span></span><span class="rep-val">34%</span></div>
+            <div class="row rep"><span>Sourced to offer</span><span class="bar"><span style="width:12%"></span></span><span class="rep-val">12%</span></div>
+          </div>
+        </div>
+        <a href="#" class="link card-learn">Learn more</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 BUILT FOR ================= -->
+<section class="sec-tight">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> atpažinimas per sekundę. Praktika iš Reval.</div>
+    <p class="eyebrow">Built for</p>
+    <div class="audience">
+      <div>Founders</div><div>TA teams</div><div>Hiring managers</div><div>Recruiters</div><div>Agencies</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10 SHARED CONTEXT ================= -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> čia anksčiau buvo keturios pastraipos apie tai, kuo skiriamės. Pakeičiau diagrama, nes bendras konteksto sluoksnis yra mechanizmas, o mechanizmą geriau parodyti nei aprašyti.</div>
+    <div class="sec-head" style="max-width:660px">
+      <p class="eyebrow">Why it stays consistent</p>
+      <h2 class="h2">One brief. Every agent reads it.</h2>
+    </div>
+
+    <div class="layer">
+      <div class="layer-brief">
+        <div class="mock-head"><span><b>The brief</b>, Senior Backend Engineer</span><span>Edited by Rasa, 2 days ago</span></div>
+        <div class="tags">
+          <span class="tag key">7+ years backend</span>
+          <span class="tag key">Go or Rust</span>
+          <span class="tag key">Monolith migration</span>
+          <span class="tag">Payments domain</span>
+          <span class="tag">Berlin or relocating</span>
+        </div>
+      </div>
+
+      <div class="rail"></div>
+
+      <div class="layer-agents">
+        <div class="chip"><b>Sourcing</b><span>ranks against it</span></div>
+        <div class="chip"><b>Analysis</b><span>scores against it</span></div>
+        <div class="chip"><b>Outreach</b><span>writes from it</span></div>
+        <div class="chip"><b>Reports</b><span>measures it</span></div>
+      </div>
+
+      <div class="loop">
+        <span class="loop-label">Every accept and pass you make edits the brief, and every agent picks it up.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 CONTROL ================= -->
+<section class="sec">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> objekcija numeris vienas agentiniam produktui. Iš trijų konkurentų ją adresuoja tik Metaview, tai mums vieta diferencijuotis. Keturi ilgi teiginiai pakeisti dviem tikrais ekranais.</div>
+    <div class="sec-head" style="max-width:640px">
+      <p class="eyebrow">Control</p>
+      <h2 class="h2">Agents that work in the open.</h2>
+      <p class="lead">You set the limits. Everything they did is on the record.</p>
+    </div>
+
+    <div class="control">
+      <div class="scroller">
+        <div class="mock">
+          <div class="mock-head"><span><b>Guardrails</b>, Senior Backend Engineer</span><span>Set by Rasa</span></div>
+          <div class="row guard"><span>Send outreach without approval</span><span class="state off">Off</span></div>
+          <div class="row guard"><span>Contact people at current customers</span><span class="state off">Off</span></div>
+          <div class="row guard"><span>Contact your past candidates</span><span class="state on">On</span></div>
+          <div class="row guard"><span>Source outside the EU</span><span class="state off">Off</span></div>
+          <div class="row guard"><span>Auto-schedule interviews</span><span class="state on">On</span></div>
+          <div class="mock-foot">Set per role, or once across the company.</div>
+        </div>
+      </div>
+      <div class="scroller">
+        <div class="mock">
+          <div class="mock-head"><span><b>Activity</b>, today</span><span>Exportable</span></div>
+          <div class="row log"><span class="log-t">09:12</span><span class="log-a">Scanned 428 profiles for Senior Backend Engineer</span><span class="log-b">Automatic</span></div>
+          <div class="row log"><span class="log-t">09:14</span><span class="log-a">Scored 61 profiles against 6 criteria</span><span class="log-b">Automatic</span></div>
+          <div class="row log"><span class="log-t">09:16</span><span class="log-a">12 shortlisted, 3 held back by a guardrail</span><span class="log-b">Automatic</span></div>
+          <div class="row log"><span class="log-t">09:31</span><span class="log-a">Outreach approved for 9 candidates</span><span class="log-b">Rasa V.</span></div>
+          <div class="row log"><span class="log-t">09:32</span><span class="log-a">9 messages sent, 3 follow-ups scheduled</span><span class="log-b">Automatic</span></div>
+          <div class="mock-foot">Every shortlist decision keeps its reasoning and its evidence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 PROOF ================= -->
+<section class="sec sec-alt" id="proof">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> visi trys konkurentai citatos antrašte deda skaičių, ne komplimentą. Tas pats principas. Tekstai pavyzdiniai, keičiam po pirmų klientų pokalbių.</div>
+    <div class="sec-head">
+      <p class="eyebrow">Customers</p>
+      <h2 class="h2">Fewer tabs. Shorter searches.</h2>
+      <p class="small" style="margin-top:16px">Example quotes for layout. To be replaced with real customer interviews.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="metric">Two days from brief to first interview</div>
+        <p class="body">The list used to take a week to build. Now it is waiting for me the same afternoon.</p>
+        <div class="who"><div class="avatar">EK</div><div><div class="who-name">Placeholder name</div><div class="who-role">Head of Talent, Northwind</div></div></div>
+      </div>
+      <div class="quote">
+        <div class="metric">Every application actually read</div>
+        <p class="body">Six hundred applications used to mean skimming the first eighty.</p>
+        <div class="who"><div class="avatar">SR</div><div><div class="who-name">Placeholder name</div><div class="who-role">Recruiting Lead, Meridian</div></div></div>
+      </div>
+      <div class="quote">
+        <div class="metric">Reply rates up, without sending more</div>
+        <p class="body">The drafts reference something the person actually built. That is the whole difference.</p>
+        <div class="who"><div class="avatar">JM</div><div><div class="who-name">Placeholder name</div><div class="who-role">Founder, Kestrel</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13 PRICING ================= -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> parodyti, kad galima pradėti mažai. Skaičių nededam, kol nepatvirtinti.</div>
+    <div class="sec-head">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="h2">Start with one agent. Add the rest when they earn it.</h2>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3 class="h3">Free</h3>
+        <p class="who-for">For your first search</p>
+        <ul>
+          <li>One open role</li>
+          <li>Sourcing and candidate analysis</li>
+          <li>No card required</li>
+        </ul>
+        <a href="#cta" class="btn btn-ghost">Start for free</a>
+      </div>
+      <div class="plan">
+        <h3 class="h3">Growth</h3>
+        <p class="who-for">For teams hiring continuously</p>
+        <ul>
+          <li>All available agents</li>
+          <li>ATS and calendar integration</li>
+          <li>Shared briefs across the team</li>
+        </ul>
+        <a href="#cta" class="btn btn-primary">Book a demo</a>
+      </div>
+      <div class="plan">
+        <h3 class="h3">Enterprise</h3>
+        <p class="who-for">For teams with a compliance function</p>
+        <ul>
+          <li>SSO and role based access</li>
+          <li>Custom guardrails and audit export</li>
+          <li>Named onboarding engineer</li>
+        </ul>
+        <a href="#cta" class="btn btn-ghost">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14 FINAL CTA ================= -->
+<section class="sec dark" id="cta">
+  <div class="gw" data-gw="dark" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="h2">Open a role. See a shortlist today.</h2>
+    <p class="lead">Bring one job description. We will show you the brief, the shortlist and the reasoning.</p>
+    <div class="btn-row">
+      <a href="#" class="btn btn-light">Book a demo</a>
+      <a href="#" class="btn btn-outline-light">Start for free</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 15 FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="note"><b>Tikslas:</b> FAQ atsakinėja į objekcijas, ne į funkcijas. Atsakymai sutrumpinti iki vienos ar dviejų eilučių.</div>
+    <div class="sec-head">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">The questions that come up first.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Who is this built for?</summary>
+        <div class="answer">Anyone who owns a hiring outcome: in-house talent teams, founders hiring for themselves, hiring managers running a search alongside their day job, and agencies working several roles at once.</div>
+      </details>
+      <details>
+        <summary>Do I need the whole platform?</summary>
+        <div class="answer">No. Every account gets all of it, but you switch on and pay for the agents you use. Most teams start with sourcing.</div>
+      </details>
+      <details>
+        <summary>How long does setup take?</summary>
+        <div class="answer">A brief can be running in a few minutes. Connecting your ATS and setting company-wide guardrails takes an afternoon.</div>
+      </details>
+      <details>
+        <summary>Does it work with our ATS?</summary>
+        <div class="answer">Greenhouse, Lever, Ashby, Workday, Teamtailor, Recruitee, SmartRecruiters and around twenty more, plus your calendar and email. If yours is missing, we will give you a date rather than a maybe.</div>
+      </details>
+      <details>
+        <summary>How does it learn what a great hire looks like for us?</summary>
+        <div class="answer">From the brief, then from every decision you make on top of it. You can read the brief at any time, edit it, or override it.</div>
+      </details>
+      <details>
+        <summary>What does "agentic" actually mean here?</summary>
+        <div class="answer">Work happens between your check-ins rather than only when you ask. Once a brief is approved, sourcing starts on its own, inside the limits you set.</div>
+      </details>
+      <details>
+        <summary>Where does our candidate data live?</summary>
+        <div class="answer">In your workspace, never in a shared pool, and never used to serve another customer. Activity logs are exportable at any time.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 16 FOOTER ================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="logo" style="margin-bottom:16px">
+          <svg class="logo-mark" viewBox="91 597 1323 356" role="img" aria-label="HireGio"><use href="#hiregio-mark"></use></svg>
+        </span>
+        <p class="small" style="max-width:250px">The agentic recruiting platform.</p>
+        <div class="social">
+          <a href="#" aria-label="HireGio on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/>
+              <circle cx="12" cy="12" r="4.1"/>
+              <circle cx="17.1" cy="6.9" r="1.05" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="HireGio on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4.2"/>
+              <circle cx="7.7" cy="7.6" r="1.05" fill="currentColor" stroke="none"/>
+              <path d="M7.7 10.7v6.4"/>
+              <path d="M11.7 17.1v-6.4"/>
+              <path d="M11.7 13.6a2.6 2.6 0 0 1 5.2 0v3.5"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Email HireGio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="2.6" y="4.9" width="18.8" height="14.2" rx="2.6"/>
+              <path d="M3.8 7.4 12 13.1l8.2-5.7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul><li><a href="#agents">Sourcing</a></li><li><a href="#agents">Candidate analysis</a></li><li><a href="#agents">Outreach</a></li><li><a href="#agents">Reports</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#">About</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul><li><a href="#faq">FAQ</a></li><li><a href="#">Blog</a></li></ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Security</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span class="brand-line">HireGio, 2026</span>
+      <span>Draft for internal review</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Brand name for the places it appears as text. The wordmark itself is
+   the drawn mark above, so this never touches it. */
+var BRAND = "HireGio";
+document.querySelectorAll(".brand").forEach(function (el) { el.textContent = BRAND; });
+document.querySelectorAll(".brand-line").forEach(function (el) { el.textContent = BRAND + ", 2026"; });
+document.title = BRAND + " Landing Draft";
+
+/* Product tabs */
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { select(tab); });
+    tab.addEventListener("keydown", function (e) {
+      var next = null;
+      if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
+      if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (next) { e.preventDefault(); next.focus(); select(next); }
+    });
+  });
+})();
+
+/* Review notes overlay */
+(function () {
+  var btn = document.getElementById("notesBtn");
+  btn.addEventListener("click", function () {
+    var on = document.body.classList.toggle("notes-on");
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.textContent = on ? "Notes: on" : "Notes: off";
+  });
+})();
+</script>
+
+<script>
+/* ------------------------------------------------------------------
+   Gradient Waves background.
+   Port of reactbits.dev/backgrounds/gradient-waves. The original is a
+   React component rendering a raymarched plasma field through ogl on a
+   WebGL2 context. This is the same field written against WebGL1, so
+   there is no dependency to load and it runs on older phones.
+
+   Three things differ from the original on purpose:
+   1. Animation time is accumulated per frame instead of read off the
+      clock. The original jumps forward by however long it was paused,
+      which shows up as the waves teleporting after you scroll back.
+   2. The edge fade is in the shader, not a CSS mask, so scrolling does
+      not force the compositor to redo a masked layer.
+   3. The element is never measured inside the render loop.
+   4. There is no mouse parallax. The original maps the pointer against
+      the canvas rect, but that rect moves as the page scrolls, so the
+      value runs far outside 0 to 1 and swings the camera sideways.
+------------------------------------------------------------------ */
+(function () {
+  var VERT = [
+    "attribute vec2 position;",
+    "void main(){ gl_Position = vec4(position, 0.0, 1.0); }"
+  ].join("\n");
+
+  var FRAG = [
+    "#ifdef GL_FRAGMENT_PRECISION_HIGH",
+    "precision highp float;",
+    "#else",
+    "precision mediump float;",
+    "#endif",
+    "uniform vec2 iResolution;",
+    "uniform float iTime;",
+    "uniform float uSpeed;",
+    "uniform float uAmplitude;",
+    "uniform float uWaveScale;",
+    "uniform float uWaveRatio;",
+    "uniform float uSwell;",
+    "uniform float uTurbulence;",
+    "uniform float uTilt;",
+    "uniform float uZoom;",
+    "uniform float uHeight;",
+    "uniform float uFogDepth;",
+    "uniform float uSteps;",
+    "uniform float uBrightness;",
+    "uniform float uOpacity;",
+    "uniform float uGrain;",
+    "uniform float uGrainIntensity;",
+    "uniform vec4 uFade;",
+    "uniform vec3 uHorizonColor;",
+    "uniform vec3 uWaveColor;",
+    "uniform vec3 uCrestColor;",
+    /* 8000 rather than the original 20000, so the value still fits when
+       a device falls back to mediump. The scene never gets near it. */
+    "const float MAX_DIST = 8000.0;",
+    "float hash21(vec2 p){",
+    "  vec3 p3 = fract(vec3(p.xyx) * 0.1031);",
+    "  p3 += dot(p3, p3.yzx + 33.33);",
+    "  return fract((p3.x + p3.y) * p3.z);",
+    "}",
+    "float plasma(vec3 r, vec2 freq, vec4 tc){",
+    "  float mx = r.x + tc.x;",
+    "  mx += uSwell * sin((r.y + mx) / 20.0 + tc.y);",
+    "  float my = r.y - tc.z;",
+    "  my += uTurbulence * cos(r.x / 23.0 + tc.w);",
+    "  return r.z - (sin(mx * freq.x) * uAmplitude + sin(my * freq.y) * uAmplitude + uHeight);",
+    "}",
+    "float raymarch(vec3 pos, vec3 dir, vec2 freq, vec4 tc){",
+    "  float dist = 0.0;",
+    "  for (int i = 0; i < 128; i++){",
+    "    if (float(i) >= uSteps) break;",
+    "    float dscene = plasma(pos + dist * dir, freq, tc);",
+    "    if (abs(dscene) < 0.1) break;",
+    "    dist += 0.9 * dscene;",
+    "    if (!(abs(dist) < MAX_DIST)) return MAX_DIST;",
+    "  }",
+    "  return dist;",
+    "}",
+    "void main(){",
+    "  float T = iTime * uSpeed;",
+    "  vec2 freq = vec2(uWaveScale / 7.0, (uWaveScale * uWaveRatio) / 3.0);",
+    "  vec4 tc = vec4(T / 0.130, T / 0.810, T / 0.200, T / 0.710);",
+    "  float c, s;",
+    "  float vfov = (3.14159 / 2.3) / max(uZoom, 0.05);",
+    "  vec3 cam = vec3(0.0, 0.0, 30.0);",
+    "  vec2 uv = (gl_FragCoord.xy / iResolution.xy) - 0.5;",
+    "  uv.x *= iResolution.x / iResolution.y;",
+    "  uv.y *= -1.0;",
+    "  vec3 dir = vec3(0.0, 0.0, -1.0);",
+    "  float ulen = length(uv);",
+    "  float xrot = vfov * ulen;",
+    "  c = cos(xrot); s = sin(xrot);",
+    "  dir = mat3(1.0, 0.0, 0.0, 0.0, c, -s, 0.0, s, c) * dir;",
+    "  vec2 nuv = ulen > 1e-5 ? uv / ulen : vec2(1.0, 0.0);",
+    "  c = nuv.x; s = nuv.y;",
+    "  dir = mat3(c, -s, 0.0, s, c, 0.0, 0.0, 0.0, 1.0) * dir;",
+    "  c = cos(uTilt); s = sin(uTilt);",
+    "  dir = mat3(c, 0.0, s, 0.0, 1.0, 0.0, -s, 0.0, c) * dir;",
+    "  float dist = raymarch(cam, dir, freq, tc);",
+    "  vec3 pos = cam + dist * dir;",
+    "  float t = clamp(uFogDepth / max(dist, 0.001), 0.0, 1.0);",
+    "  vec3 body = mix(uWaveColor, uCrestColor, clamp(pos.z * 0.08 + 0.5, 0.0, 1.0));",
+    "  vec3 col = mix(uHorizonColor, body, t);",
+    "  col = clamp(col * uBrightness, 0.0, 1.0);",
+    "  float alpha = clamp(t, 0.0, 1.0) * uOpacity;",
+    "  if (uGrain > 0.5){",
+    "    float g = hash21(gl_FragCoord.xy + mod(iTime, 64.0) * 11.0);",
+    "    alpha += (g - 0.5) * uGrainIntensity;",
+    "  }",
+    /* Edge fade, so the field dissolves into the section instead of
+       ending on a hard line. Replaces the CSS mask. */
+    "  float yn = 1.0 - (gl_FragCoord.y / iResolution.y);",
+    "  float edge = smoothstep(uFade.x, uFade.y, yn) * (1.0 - smoothstep(uFade.z, uFade.w, yn));",
+    "  alpha = clamp(alpha, 0.0, 1.0) * edge;",
+    "  gl_FragColor = vec4(col * alpha, alpha);",
+    "}"
+  ].join("\n");
+
+  /* Palette comes from the page tokens. A cream horizon means the far
+     field dissolves into the page rather than ending on an edge. */
+  var PRESETS = {
+    light: {
+      horizon: "#FBFAF7", wave: "#1E6B4E", crest: "#DCEAE2",
+      speed: 0.10, amplitude: 3.4, waveScale: 0.55, waveRatio: 0.9,
+      swell: 40, turbulence: 18, tilt: 1.11, zoom: 1.0, height: 8.0,
+      fogDepth: 45, brightness: 1.0, opacity: 0.9,
+      grain: 1, grainIntensity: 0.03,
+      fade: [-1.0, -0.9, 0.70, 1.0]
+    },
+    dark: {
+      horizon: "#0F1F19", wave: "#122F24", crest: "#27664C",
+      speed: 0.085, amplitude: 3.0, waveScale: 0.55, waveRatio: 0.9,
+      swell: 40, turbulence: 16, tilt: 1.11, zoom: 1.0, height: 8.0,
+      fogDepth: 30, brightness: 1.0, opacity: 0.55,
+      grain: 1, grainIntensity: 0.04,
+      fade: [0.0, 0.45, 1.05, 1.15]
+    }
+  };
+
+  function hexToRgb(hex) {
+    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!m) return [1, 1, 1];
+    return [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255];
+  }
+
+  function compile(gl, type, src) {
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { gl.deleteShader(sh); return null; }
+    return sh;
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var coarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+
+  function start(host) {
+    var preset = PRESETS[host.getAttribute("data-gw")] || PRESETS.light;
+
+    var canvas = document.createElement("canvas");
+    var attrs = {
+      alpha: true, premultipliedAlpha: true, antialias: false,
+      depth: false, stencil: false, powerPreference: "high-performance"
+    };
+    var gl = canvas.getContext("webgl", attrs) || canvas.getContext("experimental-webgl", attrs);
+    if (!gl) { host.classList.add("gw-fallback"); return; }
+
+    var vs = compile(gl, gl.VERTEX_SHADER, VERT);
+    var fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) { host.classList.add("gw-fallback"); return; }
+
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.bindAttribLocation(prog, 0, "position");
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { host.classList.add("gw-fallback"); return; }
+
+    host.appendChild(canvas);
+    gl.useProgram(prog);
+
+    /* One triangle big enough to cover the viewport. */
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+    function u(name) { return gl.getUniformLocation(prog, name); }
+    var uTime = u("iTime"), uRes = u("iResolution"),
+        uSteps = u("uSteps"), uZoom = u("uZoom");
+
+    gl.uniform1f(u("uSpeed"), preset.speed);
+    gl.uniform1f(u("uAmplitude"), preset.amplitude);
+    gl.uniform1f(u("uWaveScale"), preset.waveScale);
+    gl.uniform1f(u("uWaveRatio"), preset.waveRatio);
+    gl.uniform1f(u("uSwell"), preset.swell);
+    gl.uniform1f(u("uTurbulence"), preset.turbulence);
+    gl.uniform1f(u("uTilt"), preset.tilt);
+    gl.uniform1f(u("uHeight"), preset.height);
+    gl.uniform1f(u("uFogDepth"), preset.fogDepth);
+    gl.uniform1f(u("uBrightness"), preset.brightness);
+    gl.uniform1f(u("uOpacity"), preset.opacity);
+    gl.uniform1f(u("uGrain"), preset.grain);
+    gl.uniform1f(u("uGrainIntensity"), preset.grainIntensity);
+    gl.uniform4f(u("uFade"), preset.fade[0], preset.fade[1], preset.fade[2], preset.fade[3]);
+    gl.uniform3fv(u("uHorizonColor"), hexToRgb(preset.horizon));
+    gl.uniform3fv(u("uWaveColor"), hexToRgb(preset.wave));
+    gl.uniform3fv(u("uCrestColor"), hexToRgb(preset.crest));
+
+    /* Quality budget. Phones get fewer raymarch steps and a smaller
+       buffer, and both drop again if frames come in slow. */
+    var quality = coarse ? { scale: 1.25, steps: 40 } : { scale: 2, steps: 70 };
+    var downgrades = 0;
+    gl.uniform1f(uSteps, quality.steps);
+
+    /* Measured outside the render loop only. */
+    function resize() {
+      var r = host.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, quality.scale);
+      var w = Math.max(1, Math.round(r.width * dpr));
+      var h = Math.max(1, Math.round(r.height * dpr));
+      if (w === canvas.width && h === canvas.height) return;
+      canvas.width = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+      gl.uniform2f(uRes, w, h);
+      /* A phone is tall and narrow, so the default field of view crops
+         the wave out of frame. Pull the camera back until it reads. */
+      gl.uniform1f(uZoom, r.width < 700 ? preset.zoom * 0.62 : preset.zoom);
+      if (!running) render();
+    }
+
+    var raf = 0, running = false, onScreen = true, pageOn = !document.hidden;
+    var clock = 0, prev = 0, frames = 0, acc = 0;
+
+    function render() {
+      gl.uniform1f(uTime, clock);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+
+    function frame(now) {
+      raf = 0;
+      /* Clamp the step so a pause, a background tab or a slow first
+         frame can never shove the animation forward in one jump. */
+      var dt = prev ? Math.min(now - prev, 34) : 16.7;
+      prev = now;
+      clock += dt * 0.001;
+
+      render();
+
+      if (downgrades < 2) {
+        acc += dt;
+        frames++;
+        if (frames >= 45) {
+          if (acc / frames > 26) {
+            downgrades++;
+            quality.scale = Math.max(0.7, quality.scale * 0.72);
+            quality.steps = Math.max(24, quality.steps - 18);
+            gl.uniform1f(uSteps, quality.steps);
+            canvas.width = 0;
+            resize();
+          }
+          frames = 0;
+          acc = 0;
+        }
+      }
+      if (running) raf = requestAnimationFrame(frame);
+    }
+
+    function go() {
+      if (running || reduceMotion || !onScreen || !pageOn) return;
+      running = true;
+      prev = 0;
+      raf = requestAnimationFrame(frame);
+    }
+    function stop() {
+      running = false;
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    }
+
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(host);
+    else window.addEventListener("resize", resize);
+
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+        if (onScreen) go(); else stop();
+      }, { threshold: 0 }).observe(host);
+    }
+    document.addEventListener("visibilitychange", function () {
+      pageOn = !document.hidden;
+      if (pageOn) go(); else stop();
+    });
+
+    /* Phones drop the GL context when the tab is backgrounded. Show the
+       static fallback while it is gone, then rebuild in place. Never
+       reload: that would throw away the reader's scroll position. */
+    canvas.addEventListener("webglcontextlost", function (e) {
+      e.preventDefault();
+      stop();
+      host.classList.add("gw-fallback");
+    }, false);
+    canvas.addEventListener("webglcontextrestored", function () {
+      host.classList.remove("gw-fallback");
+      if (canvas.parentNode === host) host.removeChild(canvas);
+      start(host);
+    }, false);
+
+    resize();
+    if (reduceMotion) { clock = 9.0; render(); } else go();
+  }
+
+  function init() { document.querySelectorAll(".gw").forEach(start); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
