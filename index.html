@@ -13,8 +13,12 @@
   --bg-alt:#F3F1EC;
   --surface:#FFFFFF;
   --ink:#17191B;
-  --ink-2:rgba(23,25,27,0.60);
-  --ink-3:rgba(23,25,27,0.40);
+  /* Both greys are held above WCAG AA 4.5:1 on the darkest ground they
+     ever sit on (--bg-alt #F3F1EC): 0.68 gives 5.76:1, 0.62 gives 4.73:1.
+     The step between them is small by necessity, so the label tier leans
+     on uppercase, tracking and size rather than on colour alone. */
+  --ink-2:rgba(23,25,27,0.68);
+  --ink-3:rgba(23,25,27,0.62);
   --line:#E5E2DA;
   --line-2:#EFEDE6;
   --accent:#1E6B4E;
