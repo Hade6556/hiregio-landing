@@ -1082,7 +1082,15 @@ document.title = BRAND + " Landing Draft";
       var next = null;
       if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
       if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
-      if (next) { e.preventDefault(); next.focus(); select(next); }
+      /* The strip scrolls sideways under 640px, so arrowing to a tab that
+         sits past the right edge would otherwise focus something the
+         reader cannot see. */
+      if (next) {
+        e.preventDefault();
+        next.focus();
+        next.scrollIntoView({ block: "nearest", inline: "nearest" });
+        select(next);
+      }
     });
   });
 })();
