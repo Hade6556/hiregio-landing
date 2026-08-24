@@ -3,3 +3,6 @@ node_modules/
 .design-audit/
 .gstack/
 test-results/
+
+# The publish copy. index.html is the source of truth.
+share/
